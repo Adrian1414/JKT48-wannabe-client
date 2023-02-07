@@ -24,7 +24,7 @@ export default {
 </script>
 
 <template>
-  <section class="relative flex flex-wrap lg:h-screen lg:items-center">
+  <section class="relative flex flex-wrap lg:h-screen lg:items-center mb-5">
     <div class="w-full px-4 py-12 sm:px-6 sm:py-16 lg:w-1/2 lg:px-8 lg:py-24">
       <div class="mx-auto max-w-lg text-center">
         <h1 class="text-2xl font-bold sm:text-3xl text-red-500">

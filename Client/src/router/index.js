@@ -61,7 +61,6 @@ router.beforeEach((to, from, next) => {
   else if (to.name == 'register' && isAuthenticated) next({ name: 'login' })
   else if (to.name == 'oshiPage' && !isAuthenticated) next({ name: 'home' })
 
-
   else next()
 })
 

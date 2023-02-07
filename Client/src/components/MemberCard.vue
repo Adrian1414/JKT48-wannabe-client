@@ -8,7 +8,7 @@ export default {
   props: ["member"],
   components: { RouterLink },
   computed: {
-    ...mapState(useMemberStore, ['isLogin'  ])
+    ...mapState(useMemberStore, ['isLogin'])
   },
   methods: {
     ...mapActions(useMemberStore, ['addOshi'])

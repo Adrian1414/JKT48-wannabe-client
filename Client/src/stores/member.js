@@ -3,14 +3,17 @@ import axios from "axios";
 import { useToast } from "vue-toastification";
 
 const toast = useToast();
-let baseUrl = " https://jkt48-production.up.railway.app";
+// let baseUrl = " https://jkt48-production.up.railway.app";
+// let baseUrl = "http://localhost:3000"
+let baseUrl = "https://jkt48server.adrianlie.site"
+
 
 export const useMemberStore = defineStore("member", {
   state: () => ({
     members: [],
     perMember: {},
     isLogin: false,
-    isLoading: true,
+    isLoading: false,
     userData: {},
     oshi: {},
     official: false,
@@ -18,7 +21,7 @@ export const useMemberStore = defineStore("member", {
   actions: {
     async login(input) {
       try {
-        this.isLoading = true;
+      
         const { data } = await axios({
           method: "POST",
           url: baseUrl + "/users/login",
@@ -29,12 +32,13 @@ export const useMemberStore = defineStore("member", {
         this.isLogin = true;
         toast.success("Hai Wota");
         this.router.push("/");
-        this.isLoading = false;
+      
       } catch (error) {
         toast.error(error.response.data.message);
         //toast.error(error);
       }
     },
+    
     async register(input) {
       try {
         console.log(input);
@@ -77,15 +81,18 @@ export const useMemberStore = defineStore("member", {
     },
     async fetchMember() {
       try {
-        this.isLoading = true;
+       
         const { data } = await axios({
           method: "GET",
           url: baseUrl + "/members",
+          onUploadProgress: this.isLoading = true
         });
         this.members = data;
-        this.isLoading = false;
+  
       } catch (error) {
-        toast.error("Membernya ilang");
+        toast.error("cannot get members");
+      } finally {
+        this.isLoading = false
       }
     },
     async memberProfile(nickName) {
